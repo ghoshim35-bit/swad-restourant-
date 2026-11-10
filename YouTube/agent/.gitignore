@@ -1,0 +1,6 @@
+# Secrets - kabhi commit mat karna / never commit these
+client_secret.json
+token.json
+.env
+__pycache__/
+videos/
