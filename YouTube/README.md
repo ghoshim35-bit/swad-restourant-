@@ -9,3 +9,8 @@ Yahan kya rakhna hai / What goes here:
 - Thumbnails aur images
 - Titles, descriptions aur tags
 - Upload schedule aur notes
+
+## AI Agent
+
+`agent/` folder mein ek AI agent hai jo YouTube par videos upload aur manage karta hai.
+Setup aur use karne ka tareeka: [agent/README.md](agent/README.md)
