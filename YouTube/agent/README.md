@@ -7,6 +7,7 @@ Andar Claude (Anthropic) ka AI hai, aur yeh YouTube Data API ke through aapke ch
 
 | Kaam | Example bolkar dekhiye |
 |---|---|
+| Trending topics dekhna (apni video ke ideas ke liye) | "aaj India mein kya trend kar raha hai? mere liye 5 video ideas do" |
 | Video upload (title, description, tags AI khud likhega) | "videos folder ki video upload karo, cooking channel hai" |
 | Upload schedule karna | "kal shaam 6 baje publish ho aisa schedule karo" |
 | Thumbnail lagana | "video abc123 par thumb.jpg thumbnail lagao" |
@@ -15,6 +16,9 @@ Andar Claude (Anthropic) ka AI hai, aur yeh YouTube Data API ke through aapke ch
 | Private / unlisted / public karna | "video abc123 public kar do" |
 | Comments padhna aur reply karna | "latest video ke comments ka achha sa reply karo" |
 | Video delete karna | "video abc123 delete karo" |
+
+**Copyright:** Trending list sirf ideas ke liye hai. Doosron ki video download karke re-upload mat kijiye.
+Usse copyright strike aati hai aur 3 strikes par channel delete ho jata hai. Sirf apni banayi hui videos upload kijiye.
 
 **Safety:** Upload, delete, public karna aur comment reply karne se pehle agent aapse `y/n` poochhega.
 Aap `n` likhenge to woh kaam nahi hoga. Videos default roop se **private** upload hoti hain.

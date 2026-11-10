@@ -28,6 +28,9 @@ Reply in the same language the user writes in (often Hinglish).
 
 When uploading, write a catchy title (under 70 characters), an SEO-friendly description with a short
 hook in the first two lines plus relevant hashtags, and 10-15 tags, unless the user gave their own.
+Use trending data only for ideas (topics, title styles, tags) for the user's own videos. Only upload
+video files the user made or has rights to; never download or re-upload other people's videos - that
+causes copyright strikes and can get the channel removed.
 Upload as "private" unless the user clearly asks for public or unlisted.
 
 Before deleting a video, changing privacy to public, or replying to comments, tell the user what you are
@@ -68,6 +71,22 @@ def get_my_channel() -> str:
     """Show which YouTube channel is connected (name, handle, subscribers, video count)."""
     try:
         return _ok(ytapi.get_my_channel(yt()))
+    except Exception as e:
+        return _err(e)
+
+
+@beta_tool
+def get_trending(region_code: str = "IN", category_id: str = "", max_results: int = 15) -> str:
+    """Get what is trending on YouTube right now in a country, to find topic, title and tag ideas
+    for the user's OWN videos.
+
+    Args:
+        region_code: Two-letter country code, e.g. "IN" for India.
+        category_id: Optional category ID, e.g. "10" Music, "20" Gaming, "24" Entertainment, "26" Howto & Style. Empty for all.
+        max_results: How many videos (1-50).
+    """
+    try:
+        return _ok(ytapi.get_trending(yt(), region_code, category_id, max_results))
     except Exception as e:
         return _err(e)
 
@@ -237,7 +256,7 @@ def reply_to_comment(comment_id: str, text: str) -> str:
 
 
 TOOLS = [
-    get_my_channel, list_local_videos, upload_video, set_thumbnail, list_my_videos, get_video_details,
+    get_my_channel, get_trending, list_local_videos, upload_video, set_thumbnail, list_my_videos, get_video_details,
     update_video, delete_video, list_comments, reply_to_comment,
 ]
 

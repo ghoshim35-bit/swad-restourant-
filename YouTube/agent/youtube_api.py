@@ -59,6 +59,22 @@ def get_my_channel(yt) -> dict:
     }
 
 
+def get_trending(yt, region_code: str = "IN", category_id: str = "", max_results: int = 15) -> list[dict]:
+    """Most popular videos right now in a country - for topic and title ideas."""
+    params = dict(part="snippet,statistics", chart="mostPopular",
+                  regionCode=region_code, maxResults=min(max_results, 50))
+    if category_id:
+        params["videoCategoryId"] = category_id
+    res = yt.videos().list(**params).execute()
+    return [{
+        "title": v["snippet"]["title"],
+        "channel": v["snippet"]["channelTitle"],
+        "views": int(v["statistics"].get("viewCount", 0)),
+        "tags": v["snippet"].get("tags", [])[:10],
+        "url": f"https://youtu.be/{v['id']}",
+    } for v in res.get("items", [])]
+
+
 def list_local_videos(folder: str) -> list[dict]:
     path = Path(folder).expanduser()
     if not path.is_dir():
