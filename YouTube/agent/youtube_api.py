@@ -44,6 +44,21 @@ def get_service():
     return build("youtube", "v3", credentials=creds)
 
 
+def get_my_channel(yt) -> dict:
+    """Return the channel this login is connected to (to confirm the right account)."""
+    res = yt.channels().list(part="snippet,statistics", mine=True).execute()
+    if not res.get("items"):
+        return {"error": "Is Google account par koi YouTube channel nahi mila."}
+    ch = res["items"][0]
+    return {
+        "channel_id": ch["id"],
+        "title": ch["snippet"]["title"],
+        "handle": ch["snippet"].get("customUrl", ""),
+        "subscribers": int(ch["statistics"].get("subscriberCount", 0)),
+        "videos": int(ch["statistics"].get("videoCount", 0)),
+    }
+
+
 def list_local_videos(folder: str) -> list[dict]:
     path = Path(folder).expanduser()
     if not path.is_dir():

@@ -42,6 +42,8 @@ def yt():
     global _yt
     if _yt is None:
         _yt = ytapi.get_service()
+        ch = ytapi.get_my_channel(_yt)
+        print(f"   ✅ Connected channel: {ch.get('title')} {ch.get('handle', '')}")
     return _yt
 
 
@@ -59,6 +61,15 @@ def _err(e: Exception) -> str:
 
 
 DECLINED = _ok({"declined": True, "message": "User ne mana kar diya / user declined."})
+
+
+@beta_tool
+def get_my_channel() -> str:
+    """Show which YouTube channel is connected (name, handle, subscribers, video count)."""
+    try:
+        return _ok(ytapi.get_my_channel(yt()))
+    except Exception as e:
+        return _err(e)
 
 
 @beta_tool
@@ -226,7 +237,7 @@ def reply_to_comment(comment_id: str, text: str) -> str:
 
 
 TOOLS = [
-    list_local_videos, upload_video, set_thumbnail, list_my_videos, get_video_details,
+    get_my_channel, list_local_videos, upload_video, set_thumbnail, list_my_videos, get_video_details,
     update_video, delete_video, list_comments, reply_to_comment,
 ]
 

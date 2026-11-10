@@ -58,6 +58,10 @@ python youtube_agent.py
 Pehli baar YouTube ka koi kaam karne par browser khulega. Wahan apne channel wale Google account se login karke
 **Allow** kijiye. Uske baad login `token.json` mein save rehta hai.
 
+Agar ek Google account mein kai channels hain, to Google login ke waqt **sahi channel** (jaise `@yuvikaThakur1812`) chuniye.
+Login ke baad agent `✅ Connected channel: ...` dikhayega, taaki aap check kar sakein. Galat channel connect ho jaye to
+`token.json` delete karke dobara login kijiye. Kabhi bhi poochh sakte hain: "kaunsa channel connected hai?"
+
 Apni videos `YouTube/agent/videos/` folder mein rakh sakte hain (yeh folder git mein nahi jata), phir agent ko boliye:
 "videos folder ki video upload karo".
 
