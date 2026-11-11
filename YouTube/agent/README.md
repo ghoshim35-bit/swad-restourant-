@@ -52,6 +52,18 @@ pip install -r requirements.txt
 > ⚠️ `client_secret.json` aur `token.json` secret hain. Inhe kabhi GitHub par upload mat kijiye
 > (`.gitignore` already inhe rok deta hai).
 
+## Free mode (bina Claude API key ke)
+
+Pehle free mein try karna ho to Step 3 (Claude API key) chhod dijiye aur yeh chalaiye:
+
+```bash
+python free_mode.py
+```
+
+Yeh menu wala mode hai: channel info, trending ideas, apni videos/views, upload, title badalna, comments.
+YouTube API free hai, isliye iska koi kharcha nahi. Bas title/description/tags aapko khud likhne honge.
+AI (Claude) se likhwana ho to neeche wala `youtube_agent.py` chalaiye.
+
 ## Chalana
 
 ```bash
@@ -81,5 +93,6 @@ Apni videos `YouTube/agent/videos/` folder mein rakh sakte hain (yeh folder git 
 ## Files
 
 - `youtube_agent.py` - AI agent (chat loop + tools)
+- `free_mode.py` - bina AI ka free menu mode
 - `youtube_api.py` - YouTube API ke functions (login, upload, update, comments...)
 - `requirements.txt` - zaroori Python libraries
