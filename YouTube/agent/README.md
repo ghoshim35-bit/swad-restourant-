@@ -66,6 +66,17 @@ Agar ek Google account mein kai channels hain, to Google login ke waqt **sahi ch
 Login ke baad agent `✅ Connected channel: ...` dikhayega, taaki aap check kar sakein. Galat channel connect ho jaye to
 `token.json` delete karke dobara login kijiye. Kabhi bhi poochh sakte hain: "kaunsa channel connected hai?"
 
+### 🆓 Free Mode (bina Claude API key, koi AI kharcha nahi)
+
+```bash
+cd YouTube/agent
+python free_mode.py
+```
+
+Isme step 3 (Claude API key) ki zaroorat nahi, sirf `client_secret.json` (step 4) chahiye. Number wala menu aata hai:
+channel, trending, videos ke views, upload, title/tags badalna, thumbnail, comments, reply aur delete.
+Fark itna hai ki title, description aur tags AI nahi likhta, aap khud type karte hain.
+
 Apni videos `YouTube/agent/videos/` folder mein rakh sakte hain (yeh folder git mein nahi jata), phir agent ko boliye:
 "videos folder ki video upload karo".
 
@@ -81,5 +92,6 @@ Apni videos `YouTube/agent/videos/` folder mein rakh sakte hain (yeh folder git 
 ## Files
 
 - `youtube_agent.py` - AI agent (chat loop + tools)
+- `free_mode.py` - Free Mode: bina AI ke menu se channel chalana
 - `youtube_api.py` - YouTube API ke functions (login, upload, update, comments...)
 - `requirements.txt` - zaroori Python libraries
