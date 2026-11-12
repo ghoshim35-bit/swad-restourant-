@@ -21,6 +21,9 @@ SCOPES = [
     "https://www.googleapis.com/auth/youtube.upload",
 ]
 
+# Google lets users untick individual permissions; don't crash, check below instead.
+os.environ.setdefault("OAUTHLIB_RELAX_TOKEN_SCOPE", "1")
+
 VIDEO_EXTENSIONS = {".mp4", ".mov", ".mkv", ".avi", ".webm", ".m4v"}
 
 
@@ -40,6 +43,14 @@ def get_service():
                 )
             flow = InstalledAppFlow.from_client_secrets_file(str(CLIENT_SECRET), SCOPES)
             creds = flow.run_local_server(port=0)
+            granted = set(getattr(creds, "granted_scopes", None) or creds.scopes or SCOPES)
+            missing = [s for s in SCOPES if s not in granted]
+            if missing:
+                raise PermissionError(
+                    "Google login mein saari permissions nahi mili. Allow page par "
+                    "'Manage your YouTube account' aur 'Manage your YouTube videos' - dono "
+                    "checkbox (ya 'Select all') tick karke Continue dabaiye. Phir se chalaiye."
+                )
         TOKEN_FILE.write_text(creds.to_json())
     return build("youtube", "v3", credentials=creds)
 
